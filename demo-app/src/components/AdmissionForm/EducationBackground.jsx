@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 
-const EducationBackground = ({ Props, Previous , data}) => {
-    const [education, setEducation] = useState('');
-    const [university, setUniversity] = useState( '');
-    const [year, setYear] = useState('');
+const EducationBackground = ({ Props, handlePrevStep, educationInfo }) => {
 
-    useEffect(() => {
-        setEducation(data.education)
-        setUniversity(data.university)
-        setYear(data.year)
-
-
-    }, [data]);
+    const [educationalDetail, setEducationalDetail] = useState({ ...educationInfo });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const educationInfo = { 
-            education,
-            university,
-            year,
-        };
-        Props(educationInfo);
+        Props(educationalDetail);
     };
 
     return (
@@ -29,31 +15,46 @@ const EducationBackground = ({ Props, Previous , data}) => {
             <h2>Education Background</h2>
             <TextField
                 label="Education Level"
-                value={education}
-                onChange={(e) => setEducation(e.target.value)}
+                value={educationalDetail.education}
+                onChange={(e) => setEducationalDetail((prevDetails) => ({
+                    ...prevDetails,
+                    education: e.target.value,
+                }))}
                 fullWidth
                 margin="normal"
             />
             <TextField
                 label="University"
-                value={university}
-                onChange={(e) => setUniversity(e.target.value)}
+                value={educationalDetail.university}
+                onChange={(e) => setEducationalDetail((prevDetails) => ({
+                    ...prevDetails,
+                    university: e.target.value,
+                }))}
                 fullWidth
                 margin="normal"
             />
             <TextField
                 label="Year of Graduation"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+                value={educationalDetail.year}
+                onChange={(e) => setEducationalDetail((prevDetails) => ({
+                    ...prevDetails,
+                    year: e.target.value,
+                }))}
                 fullWidth
                 margin="normal"
             />
-            <Button onClick={Previous}  variant="contained" color="primary" type="submit">
-                Previous
-            </Button>
-            <Button variant="contained" color="primary" type="submit">
-                Next
-            </Button>
+
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between"
+            }}>
+                <Button onClick={handlePrevStep} variant="contained" color="primary" type="submit">
+                    Back
+                </Button>
+                <Button variant="contained" color="primary" type="submit">
+                    Next
+                </Button>
+            </div>
         </form>
     );
 };

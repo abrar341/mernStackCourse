@@ -1,14 +1,27 @@
-import React from "react";
-import PersonalInformation from "./components/AdmissionForm/PersonalInformation";
-import EducationBackground from "./components/AdmissionForm/EducationBackground";
-import Declaration from "./components/AdmissionForm/Declaration";
-import FinalComponent from "./components/AdmissionForm/FinalComponent";
+// import { Counter } from "./components/Counter";
+// import SignIn from "./components/SignIn";
+// import { Profile } from "./components/Profile";
+import MultiForm from "./components/MultiForm";
 
 function App() {
   return (
-    <React.Fragment>
-      <FinalComponent />
-    </React.Fragment>
+    <>
+      {/* <SignIn /> */}
+      {/* <Counter /> */}
+      {/* <>
+        <h3
+          style={{
+            marginTop: "15px",
+            textAlign: "center",
+          }}
+        >
+        List of All Candidates
+        </h3>
+        <Profile empty={"No items to show"} />
+      </> */}
+      {/* <Name D={detail} /> */}
+      <MultiForm />
+    </>
   );
 }
 
